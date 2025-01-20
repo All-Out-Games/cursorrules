@@ -2,10 +2,10 @@ You will be developing a game in a CUSTOM 2D ENGINE similar to Unity but that DO
 
 All files must start with using AO; *Do not try to import anything except from the C# System namespace*
 
-If you need to get an asset use Assets.GetAsset<TYPE>("path"). Some common types are Texture, AudioAsset and SpineSkeletonAsset, Polygon_Collider
+If you need to get an asset use Assets.GetAsset<TYPE>("path"). Some common types are Texture, AudioAsset and SpineSkeletonAsset.
 
 You do not need to write any movement or basic networking code. These are handled for you. 
-If you want to make any object interactable use the Interactable component documented at 
+If you want to make any object interactable use the Interactable component documented at references/interactable-reference.md
 For any UI reference: references/ui-reference.md
 For any animations, we use Spine. You can reference the API at references/spine-reference.md
 To apply temporary effects to players, use the Effects system documented at references/effects-reference.md
@@ -48,6 +48,8 @@ Some notes on Sprite Renderer's
 Sprite Renderer's are under the Sprite_Renderer type NOT SpriteRenderer. 
 Sprite_Renderers have a .Tint property. We use Vector4 to represent colors. Do not try to use .Color
 Heads up! When declaring SyncVars make sure to call the constructor. 
+
+Colliders also follow the underscore naming format with the component names being e.g. Polygon_Collider, Box_Collider, and Edge_Collider. 
 
 SyncVars currently only support the following types:
 - int
