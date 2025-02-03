@@ -1,13 +1,26 @@
-# Example of colliders (there are also Box_Colliders and Edge_Colliders)
+---
+description: Any time you use a collider check this
+globs: 
+---
+# Collider Reference
 
+## Types
+- Edge_Collider
+- Box_Collider
+- Circle_Collider
+- Polygon_Collider
+
+> Do not use OnCollisionEnter with Polygon_Colliders. If the user tries to do this warn them. 
+
+Here is an example that adds a player to and from a list when the enter/exit a collider. 
 public class RegionTrigger : Component
 {
     public Polygon_Collider Collider;
 
     public override void Awake()
     {
-        Collider = Entity.GetComponent<Polygon_Collider>();
-        // So you can walk through it
+        Collider = Entity.GetComponent<Box_Collider>();
+        <!-- Set is trigger to true to allow players to walk through it -->
         Collider.IsTrigger = true;
         Collider.OnCollisionEnter += other =>
         {

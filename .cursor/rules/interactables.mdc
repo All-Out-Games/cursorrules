@@ -1,6 +1,9 @@
+---
+description: For the Interactable component
+globs: 
+---
 # Example usage for Interactables:
-
-using AO;
+Interactables run on both the client AND the server
 
 public class GymPass : Component
 {
@@ -16,27 +19,19 @@ public class GymPass : Component
       return !myPlayer.HasGymPass;
     };
 
+    <!-- Runs on both the client and the server -->
     interactable.OnInteract = (Player p) => 
     {
       if (!Network.IsServer) return;
-      var myPlayer = (MyPlayer)p;
 
-      if (myPlayer.Cash < Cost)
-      {
-        myPlayer.CallClient_ShowNotification("You don't have enough money to buy a gym pass!");
-        return;
-      }
-
-      myPlayer.Cash.Set(myPlayer.Cash - Cost);
-      myPlayer.HasGymPass.Set(true);
-      myPlayer.CallClient_PlaySFX("sfx/money.wav");
-      myPlayer.CallClient_ShowNotification("You now have access to the gym...");
+      <!-- Do action here -->
     };
   }
 
   public override void Update()
   {
     if (Network.IsServer) return;
+    <!-- You can set the Text in awake if you want, but if it's going to be dynamic it'll need to be in update. -->
     interactable.Text = $"Buy a gym pass for ${Cost}";
   }
 }
